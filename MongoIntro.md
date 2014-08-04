@@ -63,4 +63,12 @@ Shell Quick Reference Keystrokes
 
 Increment by x
 
-    > db.foo.update({ _id:1, {$inc:{x:1}})
+    db.foo.update({ _id:1, {$inc:{x:1}})
+
+    db.foo.update({ _id:1 }, {$set:{y:1}})
+
+    db.foo.update({ _id:1 }, { $unset:{y:'' }});
+
+    db.foo.update({ _id:1 }, { $rename:{'Naem': 'Name' }});
+
+    db.foo.update({ _id:1 }, { $push: {'whatever'} });
