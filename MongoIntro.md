@@ -72,3 +72,18 @@ Increment by x
     db.foo.update({ _id:1 }, { $rename:{'Naem': 'Name' }});
 
     db.foo.update({ _id:1 }, { $push: {'whatever'} });
+
+    db.foo.update({ _id:1 }, { $pull: { things: 'whatever'} });
+
+	db.foo.update({ _id:1 }, { $addToSet:{ things: 'three' }});
+
+Find and Modify
+
+    db.foo.findAndModify({query:{_id:1}, update:{$set:{n:12}}});
+
+-1 descending order
+1 ascending order
+    
+
+
+
