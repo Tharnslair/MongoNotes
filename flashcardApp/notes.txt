@@ -1,0 +1,25 @@
+Activation Life Cycle
+=====================
+
+canDeactivate()
+canActivate()
+deactivate()
+activate()
+
+Promise Object
+==============
+
+done()
+fail()
+always() - done whether the task failed or not
+then() - two params success and fail functions
+
+Composition Lifecycle
+=====================
+
+activate() -- shared by Activation LC and Composition LC
+
+attached()
+detached()
+
+compositionComplete() -- last thing to be called
