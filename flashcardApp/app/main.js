@@ -1,4 +1,5 @@
-﻿requirejs.config({
+﻿
+requirejs.config({
     paths: {
         'text': '../lib/require/text',
         'durandal':'../lib/durandal/js',
@@ -16,24 +17,29 @@
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'],  function (system, app, viewLocator) {
-    //>>excludeStart("build", true);
-    system.debug(true);
-    //>>excludeEnd("build");
+// define('jquery', function() { return jQuery; });
+// define('knockout', ko);
 
-    app.title = 'flashcardApp';
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function(system, app, viewLocator) {
+   //>>excludeStart("build", true);
+   system.debug(true);
+   //>>excludeEnd("build");
 
-    app.configurePlugins({
-        router:true,
-        dialog: true
-    });
+   app.title = 'Flash Cards';
 
-    app.start().then(function() {
-        //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
-        //Look for partial views in a 'views' folder in the root.
-        viewLocator.useConvention();
+   app.configurePlugins({
+      router: true,
+      dialog: true,
+      widget: true,
+      observable: true
+   });
 
-        //Show the app by setting the root view model for our application with a transition.
-        app.setRoot('viewmodels/shell', 'entrance');
-    });
+   app.start().then(function() {
+      //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
+      //Look for partial views in a 'views' folder in the root.
+      viewLocator.useConvention();
+
+      //Show the app by setting the root view model for our application with a transition.
+      app.setRoot('viewmodels/shell', 'entrance');
+   });
 });
