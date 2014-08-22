@@ -280,7 +280,14 @@ What will the result of the following updates be?
 **Node find, findOne, and cursors**
 ---
 
+    mongoimport -d database -c collection grades.json
 
+    db.collection('grades').findOne(query, callback); (Quiz answer)
+
+**Using Field Projection**
+---
+
+    db.collection('grades')find({}, {'grade':1, '_id':0}, callback); (Quiz 
 
 ---
 

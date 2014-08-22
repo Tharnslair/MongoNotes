@@ -1,0 +1,16 @@
+{ "student" : "Han", "assignment" : "hw1", "grade" : 77 }
+{ "student" : "Han", "assignment" : "hw2", "grade" : 88 }
+{ "student" : "Han", "assignment" : "hw3", "grade" : 95 }
+{ "student" : "Han", "assignment" : "exam", "grade" : 75 }
+{ "student" : "Luke", "assignment" : "hw1", "grade" : 70 }
+{ "student" : "Luke", "assignment" : "hw2", "grade" : 75 }
+{ "student" : "Luke", "assignment" : "hw3", "grade" : 100 }
+{ "student" : "Luke", "assignment" : "exam", "grade" : 100 }
+{ "student" : "Lando", "assignment" : "hw1", "grade" : 100 }
+{ "student" : "Lando", "assignment" : "hw2", "grade" : 90 }
+{ "student" : "Lando", "assignment" : "hw3", "grade" : 80 }
+{ "student" : "Lando", "assignment" : "exam", "grade" : 100 }
+{ "student" : "Wedge", "assignment" : "hw1", "grade" : 100 }
+{ "student" : "Wedge", "assignment" : "hw2", "grade" : 75 }
+{ "student" : "Wedge", "assignment" : "hw3", "grade" : 70 }
+{ "student" : "Wedge", "assignment" : "exam", "grade" : 65 }
