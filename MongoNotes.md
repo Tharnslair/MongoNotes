@@ -91,6 +91,8 @@ Asynchronous vs. Synchronous
 
     db.people.find({ age : { $gte : 50, $lte : 60 } })
 
+    db.collection.find( { field: { $gt: value1, $lt: value2 } } );
+
 **Strings**
 ---
      db.people.find({ Name :{ $lt : "L" } } );
@@ -233,7 +235,7 @@ How would you count the documents in the scores collection where the type was "e
 
     db.arrays.update( { _id : 2 }, { $pullAll : { a : [ 10, 12, 14 ] } } ) // remove things
 
-    db.arrays.update( { _id : 3 }, { $pull : { a : 14 } } ) // removes a number regardless of position
+    db.arrays.update( { _id : 3 }, { $pull : { a : 14 } } ) // removes a number rega,rdless of position
 
     db.arrays.update( { _id : 2 }, { $addToSet : { a : 12 } } ) // acts as a push...does nothing if exists
 
@@ -289,6 +291,95 @@ What will the result of the following updates be?
 
     db.collection('grades')find({}, {'grade':1, '_id':0}, callback); (Quiz 
 
+**Importing Reddit**
+---
+
+    var MongoClient = require('mongodb').MongoClient
+      , request = require('request');
+    
+    MongoClient.connect('mongodb://localhost:27017/RD', function(err, db) {
+    if(err) throw err;
+    
+    request('http://www.reddit.com/r/javascript/new/.json', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+    var obj = JSON.parse(body);
+    
+    var stories = obj.data.children.map(function (story) { return story.data; });
+    
+    db.collection('reddit').insert(stories, function (err, data) {
+    if(err) throw err;
+    
+    console.dir(data);
+    
+    db.close();
+    });
+    }
+    });
+    });
+
+
+**Node.js Regex**
+---
+
+    var MongoClient = require('mongodb').MongoClient;
+    
+    MongoClient.connect('mongodb://localhost:27017/RD', function(err, db) {
+    if(err) throw err;
+    
+    var query = { 'title' : { '$regex' : 'Node' } };
+    
+    var projection = { 'title' : 1, '_id' : 0 };
+    
+    db.collection('reddit').find(query, projection).each(function(err, doc) {
+    if(err) throw err;
+    
+    if(doc == null) {
+    return db.close();
+    }
+    
+    console.dir(doc.title);
+    });
+    });
+
+
+**Node.js Regex**
+---
+    var MongoClient = require('mongodb').MongoClient;
+    
+    MongoClient.connect('mongodb://localhost:27017/RD', function(err, db) {
+    if(err) throw err;
+    
+    var query = { 'title' : { '$regex' : 'Objects' } };
+    
+    var projection = { 'title' : 1, '_id' : 0 };
+    
+    db.collection('reddit').find(query, projection).each(function(err, doc) {
+    if(err) throw err;
+    
+    if(doc == null) {
+    return db.close();
+    }
+    
+    console.dir(doc.title);
+    });
+    });
+
+var query = { 'title' : { '$regex' : 'Objects' } }; // with Objects at the beginning
+
+**Node.js Dot Notation**
+---
+
+Find a student named Steve
+
+    {"students.name" : "Steve"}
+
+**Node.js Limit, Skip, and Sort**
+---
+
+1. Sort
+2. Skip
+3. Limit
+
 ---
 
  mongoimport --headerline --type csv
@@ -296,3 +387,8 @@ What will the result of the following updates be?
 **What port?**
 
 > sudo lsof -iTCP -sTCP:LISTEN | grep mongo
+
+**Importing a csv**
+
+> (from mongo\bin directory)
+> mongoimport -d weather -c wd --type csv --files e:\M101JS\wk2\homework_2_1\weather_data.csv
